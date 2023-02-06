@@ -48,6 +48,16 @@ main input:focus {
   background-position: 1rem center;
 }
 
+.bill-input::-webkit-outer-spin-button,
+.bill-input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+.custom-input::-webkit-outer-spin-button,
+.custom-input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
 .left {
   display: flex;
   flex-flow: column;

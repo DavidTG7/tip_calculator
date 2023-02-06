@@ -1,5 +1,5 @@
 import "./main.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Amount } from "./amount/Amount";
 
 let percentageStates = {
@@ -13,6 +13,42 @@ let percentageStates = {
 
 export const Main = () => {
   const [isActive, setIsActive] = useState(percentageStates);
+  const [customValue, setCustomValue] = useState("");
+  const [billAmount, setBillAmount] = useState("");
+  const [percentage, setPercentage] = useState("15");
+  const [peopleAmount, setPeopleAmount] = useState("");
+  const [tipAmount, setTipAmount] = useState("0.00");
+  const [totalAmount, setTotalAmount] = useState("0.00");
+
+  const tipAmountCalculator = (billValue, percentageValue, people) => {
+    const totalTip = (
+      (Number(billValue) * Number(percentageValue)) /
+      100 /
+      Number(people)
+    ).toFixed(2);
+
+    setTipAmount(totalTip);
+  };
+
+  useEffect(() => {
+    tipAmountCalculator(billAmount, percentage, peopleAmount);
+  }, [billAmount, percentage, peopleAmount]);
+
+  useEffect(() => {
+    if (!billAmount.length || !peopleAmount.length) {
+      setTipAmount("0.00");
+    }
+  }, [billAmount, peopleAmount, percentage]);
+
+  const handleBillAmountChange = (e) => {
+    const billAmount = e.target.value;
+    setBillAmount(billAmount);
+  };
+
+  const handlePeopleAmountChange = (e) => {
+    const peopleAmount = e.target.value.replaceAll("-", "");
+    setPeopleAmount(peopleAmount);
+  };
 
   const handleClick = (e) => {
     const value = e.target.innerText.replace("%", "");
@@ -24,13 +60,32 @@ export const Main = () => {
       }
     }
     setIsActive({ ...percentageStates });
+    setCustomValue("");
+    setPercentage(value);
   };
 
-  const handleCustom = () => {
+  const handleCustomChange = (e) => {
+    const customValue = e.target.value;
+    setCustomValue(customValue);
     for (let item in percentageStates) {
       percentageStates[item] = false;
     }
     percentageStates["custom"] = true;
+
+    setIsActive({ ...percentageStates });
+    setPercentage(customValue);
+  };
+
+  const handleResetClick = () => {
+    setBillAmount("");
+    setPeopleAmount("");
+    setCustomValue("");
+    setPercentage("15");
+
+    for (let item in percentageStates) {
+      percentageStates[item] = false;
+    }
+    percentageStates[15] = true;
 
     setIsActive({ ...percentageStates });
   };
@@ -41,7 +96,14 @@ export const Main = () => {
         <div className="left">
           <label className="left__input-bill">
             Bill
-            <input className="bill-input" type="text" />
+            <input
+              className="bill-input"
+              placeholder="0"
+              type="number"
+              min="1"
+              value={billAmount}
+              onChange={handleBillAmountChange}
+            />
           </label>
           <div className="left__tip-options">
             <h2>Select Tip %</h2>
@@ -77,22 +139,33 @@ export const Main = () => {
                 50%
               </button>
               <input
-                className={isActive.custom ? "custom-active" : null}
-                onChange={handleCustom}
+                className={`custom-input ${isActive.custom ? "custom-active" : null}`}
+                type="number"
+                min="1"
+                onChange={handleCustomChange}
                 placeholder="Custom"
-                // value={false}
+                value={customValue}
               />
             </div>
           </div>
           <label className="left__input-people">
             Number of People
-            <input className="people-input type=" type="text" />
+            <input
+              className="people-input"
+              placeholder="0"
+              min="1"
+              type="number"
+              value={peopleAmount}
+              onChange={handlePeopleAmountChange}
+            />
           </label>
         </div>
         <div className="right">
-          <Amount type="Tip Amount" value="$0.00"/>
-          <Amount type="Total" value="$0.00"/>
-          <button className="right__button">RESET</button>
+          <Amount type="Tip Amount" value={`$${tipAmount}`} />
+          <Amount type="Total" value={`$${totalAmount}`} />
+          <button onClick={handleResetClick} className="right__button">
+            RESET
+          </button>
         </div>
       </main>
     </>
