@@ -1,0 +1,100 @@
+main {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 20px;
+  display: flex;
+  width: 52rem;
+  gap: 2rem;
+}
+
+main h2, label {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+main h2 {
+  margin: 0 0 1rem 0;
+}
+
+main input {
+  box-sizing: border-box;
+  margin-top: .5rem;
+  width: 100%;
+  background: var(--very-light-grayish-cyan);
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  border-radius: 8px;
+  text-align: right;
+  color: var(--very-dark-cyan);
+  padding: .4rem 1rem;
+  font-weight: 700;
+  font-family: 'space mono';
+}
+
+.bill-input {
+  background-image: url("../../images/icon-dollar.svg");
+  background-repeat: no-repeat;
+  background-position: 1rem 50%;
+}
+
+.people-input {
+  background-image: url("../../images/icon-person.svg");
+  background-repeat: no-repeat;
+  background-position: 1rem center;
+}
+
+.left {
+  display: flex;
+  flex-flow: column;
+  width: 50%;
+  color: var(--dark-grayish-cyan);
+  gap: 2.5rem;
+}
+
+.left__tip-options {
+  display: flex;
+  flex-flow: column;
+}
+
+.left__tip-options_buttons {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  gap: .8rem;
+}
+
+.left__tip-options_buttons input {
+  width: 31%;
+}
+
+.left__tip-options_buttons button {
+  font-family: 'space mono';
+  border: none;
+  outline: none;
+  color: var(--very-light-grayish-cyan);
+  background: var(--very-dark-cyan);
+  border-radius: 5px;
+  width: 31%;
+  height: 3rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.left__tip-options_buttons button:nth-child(3) {
+  background: var(--strong-cyan);
+  color: var(--very-dark-cyan);
+}
+
+.left__tip-options_buttons button:nth-child(6) {
+  background: var(--very-light-grayish-cyan);
+  color: var(--dark-grayish-cyan);
+}
+
+.right {
+  width: 50%;
+  background: var(--very-dark-cyan);
+  border-radius: 15px;
+}
