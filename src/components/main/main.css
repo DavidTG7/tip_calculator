@@ -32,6 +32,10 @@ main input {
   font-family: 'space mono';
 }
 
+main input:focus {
+  outline: var(--strong-cyan) solid 2px;
+}
+
 .bill-input {
   background-image: url("../../images/icon-dollar.svg");
   background-repeat: no-repeat;
@@ -65,10 +69,6 @@ main input {
   gap: .8rem;
 }
 
-.left__tip-options_buttons input {
-  width: 31%;
-}
-
 .left__tip-options_buttons button {
   font-family: 'space mono';
   border: none;
@@ -83,16 +83,29 @@ main input {
   cursor: pointer;
 }
 
+.left__tip-options_buttons .button-active,
+.left__tip-options_buttons .button-active:hover {
+  background: var(--strong-cyan);
+}
 
 .left__tip-options_buttons button:hover {
   background: var(--grayish-cyan);
 }
 
-.left__tip-options_buttons .button-active {
-  background: var(--strong-cyan);
+.left__tip-options_buttons input {
+  box-sizing: border-box;
+  width: 31%;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.left__tip-options_buttons .custom-active {
+  outline: var(--strong-cyan) 3px solid;
 }
 
 .right {
+  box-sizing: border-box;
+  padding: 2rem;
   width: 50%;
   background: var(--very-dark-cyan);
   border-radius: 15px;

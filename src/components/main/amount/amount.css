@@ -1,0 +1,9 @@
+.amount__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.amount__type h3 {
+  color: var(--very-light-grayish-cyan);
+  font-size: 1.2rem;
+}
