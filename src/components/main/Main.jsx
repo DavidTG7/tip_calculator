@@ -92,6 +92,7 @@ export const Main = () => {
         <div className="right">
           <Amount type="Tip Amount" value="$0.00"/>
           <Amount type="Total" value="$0.00"/>
+          <button className="right__button">RESET</button>
         </div>
       </main>
     </>

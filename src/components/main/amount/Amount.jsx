@@ -7,7 +7,7 @@ export const Amount = ({ type, value }) => {
         <h3>{type}</h3>
         <p>/ person</p>
       </div>
-      <p>{value}</p>
+      <p className="amount__value">{value}</p>
     </div>
   );
 };

@@ -1,9 +1,24 @@
 .amount__container {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .amount__type h3 {
   color: var(--very-light-grayish-cyan);
   font-size: 1.2rem;
+  margin: 0;
+}
+
+.amount__type p {
+  color: var(--grayish-cyan);
+  font-size: .8rem;
+  margin: 0;
+}
+
+.amount__value {
+  color: var(--strong-cyan);
+  font-size: 2.8rem;
+  margin: 0;
+  font-weight: 700;
 }
