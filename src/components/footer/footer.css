@@ -1,5 +1,5 @@
 footer {
-  margin-top: 1rem;
+  margin: 1rem auto;
   display: flex;
   justify-content: center;
   color: var(--very-dark-cyan);
