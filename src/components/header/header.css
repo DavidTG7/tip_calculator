@@ -3,3 +3,8 @@ header {
   justify-content: center;
   margin: 5rem;
 }
+
+header h1 {
+  position: absolute;
+  color: transparent;
+}
