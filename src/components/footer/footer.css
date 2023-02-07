@@ -4,4 +4,5 @@ footer {
   justify-content: center;
   color: var(--very-dark-cyan);
   font-size: .7rem;
+  text-align: center;
 }

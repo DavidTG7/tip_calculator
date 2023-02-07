@@ -10,9 +10,9 @@ export const Footer = () => {
         </a>
         . Coded by{" "}
         <a href="https://www.linkedin.com/in/david-tg/" target="_blank">
-          DavidTG
+          DavidTG{" "}
         </a>
-        .
+        (2023).
       </div>
     </footer>
   );
