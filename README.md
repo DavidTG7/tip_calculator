@@ -66,15 +66,21 @@ Using variables to store color values used all over the app:
 
 Creating Media Queries for Responsive Design:
 ```css
-:root {
-  --strong-cyan: hsl(172, 67%, 45%);
-  --very-dark-cyan: hsl(183, 100%, 15%);
-  --dark-grayish-cyan: hsl(186, 14%, 43%);
-  --grayish-cyan: hsl(184, 14%, 56%);
-  --light-grayish-cyan: hsl(185, 41%, 84%);
-  --very-light-grayish-cyan: hsl(189, 41%, 97%);
-  --white: hsl(0, 0%, 100%);
-  --hover-light-cyan: hsl(172, 49%, 69%);
+@media screen and (max-width: 710px) {
+  main {
+    margin: auto;
+    flex-flow: column;
+    width: 26rem;
+    align-items: center;
+  }
+  
+  .left,.right {
+    width: 100%;
+  }
+
+  .left__tip-options_buttons button {
+    width: 48%;
+  }
 }
 ```
 
