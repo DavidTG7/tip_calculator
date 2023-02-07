@@ -18,4 +18,17 @@ body {
   height: 90vh;
   display: grid;
   place-items: center;
+  margin: 0;
+}
+
+@media screen and (max-width: 950px) {
+  * {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 815px) {
+  * {
+    font-size: 12px;
+  }
 }

@@ -30,15 +30,22 @@ export const Main = () => {
     setTipAmount(totalTip);
   };
 
+  const totalAmountCalculator = (tip, billAmount, people) => {
+    const totalAmountPerPerson = (
+      (Number(billAmount) / Number(people)) +
+      Number(tip)
+    ).toFixed(2);
+    setTotalAmount(totalAmountPerPerson);
+  };
+  
   useEffect(() => {
     tipAmountCalculator(billAmount, percentage, peopleAmount);
-  }, [billAmount, percentage, peopleAmount]);
-
-  useEffect(() => {
+    totalAmountCalculator(tipAmount, billAmount, peopleAmount);
     if (!billAmount.length || !peopleAmount.length) {
       setTipAmount("0.00");
+      setTotalAmount("0.00");
     }
-  }, [billAmount, peopleAmount, percentage]);
+  }, [billAmount, peopleAmount, percentage, tipAmount]);
 
   const handleBillAmountChange = (e) => {
     const billAmount = e.target.value;
@@ -139,7 +146,9 @@ export const Main = () => {
                 50%
               </button>
               <input
-                className={`custom-input ${isActive.custom ? "custom-active" : null}`}
+                className={`custom-input ${
+                  isActive.custom ? "custom-active" : null
+                }`}
                 type="number"
                 min="1"
                 onChange={handleCustomChange}

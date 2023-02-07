@@ -32,6 +32,7 @@ main input {
   font-family: 'space mono';
 }
 
+
 main input:focus {
   outline: var(--strong-cyan) solid 2px;
 }
@@ -143,4 +144,20 @@ main input:focus {
 
 .right__button:hover {
   background: var(--hover-light-cyan);
+}
+@media screen and (max-width: 710px) {
+  main {
+    margin: auto;
+    flex-flow: column;
+    width: 26rem;
+    align-items: center;
+  }
+  
+  .left,.right {
+    width: 100%;
+  }
+
+  .left__tip-options_buttons button {
+    width: 48%;
+  }
 }
