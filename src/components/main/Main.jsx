@@ -19,6 +19,8 @@ export const Main = () => {
   const [peopleAmount, setPeopleAmount] = useState("");
   const [tipAmount, setTipAmount] = useState("0.00");
   const [totalAmount, setTotalAmount] = useState("0.00");
+  const [zeroPeopleValidator, setZeroPeopleValidator] = useState(false);
+  const [zeroBillAmountValidator, setZeroBillAmountValidator] = useState(false);
 
   const tipAmountCalculator = (billValue, percentageValue, people) => {
     const totalTip = (
@@ -32,15 +34,18 @@ export const Main = () => {
 
   const totalAmountCalculator = (tip, billAmount, people) => {
     const totalAmountPerPerson = (
-      (Number(billAmount) / Number(people)) +
+      Number(billAmount) / Number(people) +
       Number(tip)
     ).toFixed(2);
     setTotalAmount(totalAmountPerPerson);
   };
-  
+
   useEffect(() => {
     tipAmountCalculator(billAmount, percentage, peopleAmount);
     totalAmountCalculator(tipAmount, billAmount, peopleAmount);
+  }, [billAmount, percentage, peopleAmount, tipAmount]);
+
+  useEffect(() => {
     if (!billAmount.length || !peopleAmount.length) {
       setTipAmount("0.00");
       setTotalAmount("0.00");
@@ -48,12 +53,22 @@ export const Main = () => {
   }, [billAmount, peopleAmount, percentage, tipAmount]);
 
   const handleBillAmountChange = (e) => {
-    const billAmount = e.target.value;
-    setBillAmount(billAmount);
+    const inputBillAmount = e.target.value;
+    if (inputBillAmount === "0") {
+      setZeroBillAmountValidator(true);
+      return;
+    }
+    setZeroBillAmountValidator(false);
+    setBillAmount(inputBillAmount);
   };
 
   const handlePeopleAmountChange = (e) => {
     const peopleAmount = e.target.value.replaceAll("-", "");
+    if (peopleAmount === "0") {
+      setZeroPeopleValidator(true);
+      return;
+    }
+    setZeroPeopleValidator(false);
     setPeopleAmount(peopleAmount);
   };
 
@@ -88,6 +103,8 @@ export const Main = () => {
     setPeopleAmount("");
     setCustomValue("");
     setPercentage("15");
+    setZeroPeopleValidator(false);
+    setZeroBillAmountValidator(false)
 
     for (let item in percentageStates) {
       percentageStates[item] = false;
@@ -103,8 +120,15 @@ export const Main = () => {
         <div className="left">
           <label className="left__input-bill">
             Bill
+            {zeroBillAmountValidator ? (
+              <span className="span-validator">
+                Can't be zero
+              </span>
+            ) : null}
             <input
-              className="bill-input"
+              className={`bill-input ${
+                zeroBillAmountValidator ? "bill-input-invalid" : null
+              }`}
               placeholder="0"
               type="number"
               min="1"
@@ -159,8 +183,15 @@ export const Main = () => {
           </div>
           <label className="left__input-people">
             Number of People
+            {zeroPeopleValidator ? (
+              <span className="span-validator">
+                Can't be zero
+              </span>
+            ) : null}
             <input
-              className="people-input"
+              className={`people-input ${
+                zeroPeopleValidator ? "left__input-people-invalid" : null
+              }`}
               placeholder="0"
               min="1"
               type="number"

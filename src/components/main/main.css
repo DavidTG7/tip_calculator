@@ -59,6 +59,11 @@ main input:focus {
   appearance: none;
 }
 
+.people-input::-webkit-outer-spin-button,
+.people-input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
 .left {
   display: flex;
   flex-flow: column;
@@ -115,6 +120,26 @@ main input:focus {
   outline: var(--strong-cyan) 3px solid;
 }
 
+.left__input-people,
+.left__input-bill {
+  position: relative;
+}
+
+.bill-input-invalid {
+  outline: red 2px solid !important;
+}
+
+.span-validator {
+  position: absolute;
+  right: 0;
+  color: red;
+  text-align: right;
+}
+
+.left__input-people-invalid {
+  outline: red 2px solid !important;
+}
+
 .right {
   display: flex;
   flex-flow: column;
@@ -145,6 +170,7 @@ main input:focus {
 .right__button:hover {
   background: var(--hover-light-cyan);
 }
+
 @media screen and (max-width: 710px) {
   main {
     margin: auto;
@@ -157,7 +183,8 @@ main input:focus {
     width: 100%;
   }
 
-  .left__tip-options_buttons button {
-    width: 48%;
+  .left__tip-options_buttons button,
+  .custom-input {
+    width: 48% !important;
   }
 }
